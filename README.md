@@ -2,15 +2,15 @@
 
 Projeto em desenvolvimento de um sistema para gerenciamento de campeonatos, com foco em organização de times, partidas, tabela de classificação e estatísticas automáticas.
 
----
+# Veja e acompanhe:
+- site: https://arthurlemos8.github.io/Gerenciador-de-Campeonato/
+
 
 ## 📌 Sobre o projeto
 
 Este sistema tem como objetivo facilitar a criação e gestão de campeonatos esportivos, permitindo cadastrar times, gerar confrontos automaticamente e acompanhar o desempenho ao longo da competição.
 
 O projeto ainda está em desenvolvimento e novas funcionalidades estão sendo adicionadas continuamente.
-
----
 
 ## ⚙️ Funcionalidades
 
