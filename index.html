@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciador-Campeonato</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <header>⚽ Gerenciador de Campeonato</header>
+
+    <div class="banner">
+        <h2>SISTEMA DE GERENCIAMENTO DE CAMPEONATOS</h2>
+        <p>Cadastre times, sorteie confrontos e acompanhe a classificação em tempo real.</p>
+    </div>
+
+    <main class="container">
+        <aside class="Menu">
+            <h2>Menu</h2>
+
+            <button>Dashboard</button>
+            <button>Times</button>
+            <button>Confrontos</button>
+            <button>Resultados</button>
+            <button>CLassificação</button>
+        </aside>
+
+        <section class="conteudo">
+            <div class="dashboard">
+                <div class="card">
+                    <h3>Times</h3>
+
+                    <p id="total-times">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Jogos</h3>
+                    <p id="total-jogos">0</p>
+                </div>
+
+                <div class="card">
+                    <h3>Rodadas</h3>
+                    <p id="total-rodadas">0</p>
+
+                </div>
+            </div>
+
+            <div class="cadastro-time">
+                <h2>Cadastrar times</h2>
+
+                <div class="form-group">
+
+                    <label for="nomeTime">
+                        Nome do Time
+                    </label>
+
+                    <input type="text" id="nomeTime" placeholder="Digite o nome do time">
+
+                    <button id="btnCadastrar">
+                        Cadastrar Time
+                    </button>
+
+                </div>
+
+                <table id="tabelaTimes">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome do Time</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="listaTimes">
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
