@@ -88,7 +88,7 @@ header{
 }
 
 #listartimes{
-    list-style: nome;
+    list-style: none;
     margin-top: 20px;
 
 }
@@ -156,4 +156,37 @@ header{
 
     background:#1e293b;
     color:white;
+}
+
+.confrontos{
+    background: white;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.confrontos table{
+    width: 100%;
+}
+
+#btnSortear{
+    margin: 15px 0;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #1e293b;
+    color: white;
+}
+#tabelaConfrontos th{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    table-layout: fixed;
+
+}
+#tabelaConfrontos th,
+#tabelaConfrontos td{
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
 }
