@@ -7,6 +7,7 @@ const listaTimes = document.getElementById("listaTimes");
 const totalTimes = document.getElementById("total-times");
 const btnSortear = document.getElementById("btnSortear");
 const listaConfrontos = document.getElementById("listaConfrontos");
+const totalRodadas = document.getElementById("total-rodadas");
 
 btnCadastrar.addEventListener("click", cadastrarTimes);
 btnSortear.addEventListener("click", gerarCampeonato);
@@ -75,32 +76,49 @@ function editarTime(id) {
     renderizarTimes();
 }
 
-function sortearConfrontos(){
+function sortearConfrontos() {
     confrontos = [];
 
     const timesEmbaralhados = [...times];
-    timesEmbaralhados.sort(() =>Math.random() - 0.5);
+    timesEmbaralhados.sort(() => Math.random() - 0.5);
 
-    for(let i=0; i< timesEmbaralhados.length; i+=2){
-        if(timesEmbaralhados[i+1]){
+    for (let i = 0; i < timesEmbaralhados.length; i += 2) {
+        if (timesEmbaralhados[i + 1]) {
             confrontos.push({
                 mandante: timesEmbaralhados[i].nome,
-                visitante: timesEmbaralhados[i+1].nome
+                visitante: timesEmbaralhados[i + 1].nome
             });
         }
     }
     renderizarConfrontos();
 }
-function renderizarConfrontos(){
-    listaConfrontos.innerHTML ="";
-    confrontos.forEach((confronto, index)=>{
+function renderizarConfrontos() {
+    listaConfrontos.innerHTML = "";
+    confrontos.forEach((confronto, index) => {
 
         const tr = document.createElement("tr");
 
         tr.innerHTML = `
-        <td>${index+1}</td>
+        <td>${index + 1}</td>
         <td>${confronto.mandante}</td>
         <td>${confronto.visitante}</td>
+         <td>
+            ${confronto.golsMandante === null
+                ? "- x -"
+                : `${confronto.golsMandante} x ${confronto.golsVisitante}`
+            }
+         </td>
+         <td>
+             ${confronto.golsMandante === null
+                ? "⏳ Pendente"
+                : "✅ Finalizado"
+            }
+         </td>
+        <td>
+        <button onclick="lancarResultado(${index})">
+            Resultado
+        </button>
+        </td>
         `;
         listaConfrontos.appendChild(tr)
     });
@@ -109,9 +127,9 @@ function renderizarConfrontos(){
 function gerarCampeonato() {
     confrontos = [];
 
-    for(let i = 0; i < times.length; i++) {
+    for (let i = 0; i < times.length; i++) {
 
-        for(let j = i + 1; j < times.length; j++) {
+        for (let j = i + 1; j < times.length; j++) {
 
             confrontos.push({
                 mandante: times[i].nome,
@@ -122,6 +140,31 @@ function gerarCampeonato() {
 
         }
     }
+    let rodadas;
+
+    if (times.length % 2 === 0) {
+        rodadas = times.length - 1
+    }
+    else {
+        rodadas = times.length;
+    }
+    totalRodadas.textContent = rodadas;
+
+    renderizarConfrontos();
+}
+
+function lancarResultado(index) {
+
+    const golsMandante = Number(
+        prompt("Gols do mandante:")
+    );
+
+    const golsVisitante = Number(
+        prompt("Gols do visitante:")
+    );
+
+    confrontos[index].golsMandante = golsMandante;
+    confrontos[index].golsVisitante = golsVisitante;
 
     renderizarConfrontos();
 }
