@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <header>⚽ Gerenciador de Campeonato</header>
+    <header>CHAMPIONSCUP</header>
 
     <div class="banner">
         <h2>SISTEMA DE GERENCIAMENTO DE CAMPEONATOS</h2>
@@ -21,15 +21,14 @@
         <aside class="Menu">
             <h2>Menu</h2>
 
-            <button>Dashboard</button>
-            <button>Times</button>
-            <button>Confrontos</button>
-            <button>Resultados</button>
-            <button>CLassificação</button>
+            <button id="btnDashboard">Dashboard</button>
+            <button id="btnTimes">Times</button>
+            <button id="btnConfrontos">Confrontos</button>
+            <button id="btnClassificacao">CLassificação</button>
         </aside>
 
-        <section class="conteudo">
-            <div class="dashboard">
+        <section class="conteudo" >
+            <div class="dashboard" id="secaoDashboard">
                 <div class="card">
                     <h3>Times</h3>
 
@@ -48,7 +47,7 @@
                 </div>
             </div>
 
-            <div class="cadastro-time">
+            <div class="cadastro-time" id="secaoTimes">
                 <h2>Cadastrar times</h2>
 
                 <div class="form-group">
@@ -80,37 +79,24 @@
                 </table>
             </div>
 
-            <div class="confrontos">
+            <div class="confrontos" id="secaoConfrontos">
 
                 <button id="btnSortear">
                     Gerar Campeonato
                 </button>
 
-                <button id="btnResert">
+                <button id="btnReset">
                     Reiniciar campeonato
                 </button>
                 
                 <h2>Tabela deJogos:</h2>
 
 
-                <table id="tabelaConfrontos">
-                    <thead>
-                        <tr>
-                            <th>Jogo</th>
-                            <th>Mandante</th>
-                            <th>Visitante</th>
-                            <th>Resultados</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody id="listaConfrontos">
-
-                    </tbody>
-                </table>
+                <div id="listaRodadas"></div>
+                
             </div>
 
-            <div class="classificacao">
+            <div class="classificacao" id="secaoClassificacao">
                 <h2>Tabela de classificação</h2>
                 <table id="tabelaclassificacao">
                     <thead>
