@@ -15,6 +15,10 @@ const secaoTimes = document.getElementById("secaoTimes");
 const secaoConfrontos = document.getElementById("secaoConfrontos");
 const secaoClassificacao = document.getElementById("secaoClassificacao");
 const btnReset = document.getElementById("btnReset");
+const totalFinalizados = document.getElementById("total-finalizados");
+const totalPendentes = document.getElementById("total-pendentes");
+const cardMelhorAtaque = document.getElementById("melhor-ataque");
+const cardMelhorDefesa = document.getElementById("melhor-defesa");
 
 btnCadastrar.addEventListener("click", cadastrarTimes);
 btnSortear.addEventListener("click", gerarCampeonato);
@@ -32,9 +36,9 @@ function cadastrarTimes() {
         id: Date.now(),
         nome: nome
     });
-    
+
     inputNome.value = "";
-    
+
     salvarDados();
     renderizarTimes();
 }
@@ -109,18 +113,18 @@ function renderizarConfrontos() {
 
     confrontos.forEach(confronto => {
 
-    if(!rodadasAgrupadas[confronto.rodada]){
-        rodadasAgrupadas[confronto.rodada] = [];
-    }
+        if (!rodadasAgrupadas[confronto.rodada]) {
+            rodadasAgrupadas[confronto.rodada] = [];
+        }
 
-    rodadasAgrupadas[confronto.rodada].push(confronto);
+        rodadasAgrupadas[confronto.rodada].push(confronto);
     });
 
     Object.keys(rodadasAgrupadas).forEach(numeroRodada => {
 
-    const divRodada = document.createElement("div");
+        const divRodada = document.createElement("div");
 
-    divRodada.innerHTML = `
+        divRodada.innerHTML = `
         <h3>🏆 Rodada ${numeroRodada}</h3>
 
         <table class="tabela-rodada">
@@ -140,36 +144,34 @@ function renderizarConfrontos() {
         </table>
     `;
 
-    listaRodadas.appendChild(divRodada);
+        listaRodadas.appendChild(divRodada);
 
-    const tbodyRodada = document.getElementById(
-        `rodada-${numeroRodada}`
-    );
-    rodadasAgrupadas[numeroRodada].forEach((confronto) => {
+        const tbodyRodada = document.getElementById(
+            `rodada-${numeroRodada}`
+        );
+        rodadasAgrupadas[numeroRodada].forEach((confronto) => {
 
-    const index = confrontos.indexOf(confronto);
+            const index = confrontos.indexOf(confronto);
 
-    const tr = document.createElement("tr");
+            const tr = document.createElement("tr");
 
-    tr.innerHTML = `
+            tr.innerHTML = `
         <td>${index + 1}</td>
         <td>${confronto.mandante}</td>
         <td>${confronto.visitante}</td>
 
         <td>
-            ${
-                confronto.golsMandante === null
-                ? "- x -"
-                : `${confronto.golsMandante} x ${confronto.golsVisitante}`
-            }
+            ${confronto.golsMandante === null
+                    ? "- x -"
+                    : `${confronto.golsMandante} x ${confronto.golsVisitante}`
+                }
         </td>
 
         <td>
-            ${
-                confronto.golsMandante === null
-                ? "⏳ Pendente"
-                : "✅ Finalizado"
-            }
+            ${confronto.golsMandante === null
+                    ? "⏳ Pendente"
+                    : "✅ Finalizado"
+                }
         </td>
 
         <td>
@@ -179,37 +181,50 @@ function renderizarConfrontos() {
         </td>
     `;
 
-    tbodyRodada.appendChild(tr);
+            tbodyRodada.appendChild(tr);
 
-});
+        });
 
-});
+    });
     document.getElementById("total-jogos").textContent = confrontos.length;
 }
 function gerarCampeonato() {
     confrontos = [];
-    let rodada=1
-    let jogosNaRodada=0;
+    let timesRodadas = [...times];
+    if (timesRodadas.length % 2 !== 0) {
+        timesRodadas.push({
+            nome: "FOLGA"
+        });
+    };
 
-    for (let i = 0; i < times.length; i++) {
 
-        for (let j = i + 1; j < times.length; j++) {
+    for (let rodada = 1; rodada < timesRodadas.length; rodada++) {
+        for (let i = 0; i < timesRodadas.length / 2; i++) {
+            const mandante = timesRodadas[i];
+            const visitante = timesRodadas[timesRodadas.length - 1 - i];
+            if (mandante.nome !== "FOLGA" && visitante.nome !== "FOLGA") {
+                if (rodada % 2 === 0) {
+                    confrontos.push({
+                        rodada: rodada,
+                        mandante: visitante.nome,
+                        visitante: mandante.nome,
+                        golsMandante: null,
+                        golsVisitante: null
+                    });
+                } else {
 
-            confrontos.push({
-                rodada: rodada,
-                mandante: times[i].nome,
-                visitante: times[j].nome,
-                golsMandante: null,
-                golsVisitante: null
-            });
-            jogosNaRodada++;
-
-            if(jogosNaRodada >= Math.floor(times.length / 2)){
-                rodada++;
-                jogosNaRodada = 0;
+                    confrontos.push({
+                        rodada: rodada,
+                        mandante: mandante.nome,
+                        visitante: visitante.nome,
+                        golsMandante: null,
+                        golsVisitante: null
+                    });
+                }
             }
-
         }
+        const ultimo = timesRodadas.pop();
+        timesRodadas.splice(1, 0, ultimo);
     }
     let rodadas;
 
@@ -220,18 +235,19 @@ function gerarCampeonato() {
         rodadas = times.length;
     }
     totalRodadas.textContent = rodadas;
-    
+
     salvarDados();
+    atualizarDashboard();
     renderizarConfrontos();
     renderizarClassificacao();
 }
-function reiniciarCampeonato(){
+function reiniciarCampeonato() {
 
     const confirmar = confirm(
         "Tem certeza que deseja apagar todos os dados?"
     );
 
-    if(!confirmar){
+    if (!confirmar) {
         return;
     }
 
@@ -251,28 +267,43 @@ function reiniciarCampeonato(){
 
 function lancarResultado(index) {
 
-   if(
+    if (
         confrontos[index].golsMandante !== null &&
         confrontos[index].golsVisitante !== null
-    ){
+    ) {
         const confirmar = confirm(
             "Esse jogo já possui resultado. Deseja alterar?"
         );
 
-        if(!confirmar){
+        if (!confirmar) {
             return;
         }
     }
 
     const golsMandante = prompt("Gols do mandante:");
 
-    if(golsMandante === null){
+    if (golsMandante === null) {
         return;
     }
 
     const golsVisitante = prompt("Gols do visitante:");
 
-    if(golsVisitante === null){
+    if (golsVisitante === null) {
+        return;
+    }
+
+    if (isNaN(golsMandante) || isNaN(golsVisitante)) {
+        alert("Digite apenas números.");
+        return;
+    }
+
+    if (golsMandante < 0 || golsVisitante < 0) {
+        alert("Os gols não podem ser negativos.");
+        return;
+    }
+
+    if (!Number.isInteger(Number(golsMandante)) || !Number.isInteger(Number(golsVisitante))) {
+        alert("Digite apenas números Inteiros.");
         return;
     }
 
@@ -280,6 +311,7 @@ function lancarResultado(index) {
     confrontos[index].golsVisitante = Number(golsVisitante);
 
     salvarDados();
+    atualizarDashboard();
     renderizarConfrontos();
     renderizarClassificacao();
 }
@@ -302,7 +334,7 @@ function renderizarClassificacao() {
 
     confrontos.forEach(confronto => {
 
-        if(confronto.golsMandante === null) return;
+        if (confronto.golsMandante === null) return;
 
         const mandante = classificacao.find(
             t => t.nome === confronto.mandante
@@ -321,21 +353,21 @@ function renderizarClassificacao() {
         visitante.gp += confronto.golsVisitante;
         visitante.gc += confronto.golsMandante;
 
-        if(confronto.golsMandante > confronto.golsVisitante){
+        if (confronto.golsMandante > confronto.golsVisitante) {
 
             mandante.vitorias++;
             visitante.derrotas++;
 
             mandante.pontos += 3;
 
-        }else if(confronto.golsMandante < confronto.golsVisitante){
+        } else if (confronto.golsMandante < confronto.golsVisitante) {
 
             visitante.vitorias++;
             mandante.derrotas++;
 
             visitante.pontos += 3;
 
-        }else{
+        } else {
 
             mandante.empates++;
             visitante.empates++;
@@ -350,18 +382,36 @@ function renderizarClassificacao() {
         time.sg = time.gp - time.gc;
     });
 
-    classificacao.sort((a,b)=>
+    classificacao.sort((a, b) =>
         b.pontos - a.pontos ||
         b.sg - a.sg ||
         b.gp - a.gp
     );
 
-    classificacao.forEach((time,index)=>{
+    let melhorAtaque = classificacao[0];
+    let melhorDefesa = classificacao[0];
+
+    classificacao.forEach(time => {
+
+        if (time.gp > melhorAtaque.gp) {
+            melhorAtaque = time;
+        }
+
+        if (time.gc < melhorDefesa.gc) {
+            melhorDefesa = time;
+        }
+
+    });
+    cardMelhorAtaque.textContent =`${melhorAtaque.nome} (${melhorAtaque.gp} gols)`;
+
+    cardMelhorDefesa.textContent =  `${melhorDefesa.nome} (${melhorDefesa.gc} sofridos)`;
+
+    classificacao.forEach((time, index) => {
 
         const tr = document.createElement("tr");
 
         tr.innerHTML = `
-            <td>${index+1}</td>
+            <td>${index + 1}</td>
             <td>${time.nome}</td>
             <td>${time.jogos}</td>
             <td>${time.pontos}</td>
@@ -377,47 +427,61 @@ function renderizarClassificacao() {
     });
 
 }
-function salvarDados(){
+function salvarDados() {
 
     localStorage.setItem("times", JSON.stringify(times));
     localStorage.setItem("confrontos", JSON.stringify(confrontos))
 }
 
-function carregarDados(){
+function carregarDados() {
     const timeSalvos = localStorage.getItem("times");
     const confrontosSalvos = localStorage.getItem("confrontos");
 
-    if(confrontosSalvos){
+    if (confrontosSalvos) {
         confrontos = JSON.parse(confrontosSalvos);
     }
-    if(timeSalvos){
-    times = JSON.parse(timeSalvos);
+    if (timeSalvos) {
+        times = JSON.parse(timeSalvos);
     }
     renderizarTimes();
+    atualizarDashboard();
     renderizarConfrontos();
     renderizarClassificacao();
 }
 
-function mostrarSecao(secao){
-    secaoDashboard.style.display="none";
-    secaoClassificacao.style.display="none";
-    secaoConfrontos.style.display="none";
-    secaoTimes.style.display="none";
+function mostrarSecao(secao) {
+    secaoDashboard.style.display = "none";
+    secaoClassificacao.style.display = "none";
+    secaoConfrontos.style.display = "none";
+    secaoTimes.style.display = "none";
 
-    secao.style.display="block";
+    secao.style.display = "block";
 }
 
-document.getElementById("btnDashboard").addEventListener("click", () =>{
+function atualizarDashboard() {
+
+    const finalizados = confrontos.filter(
+        confronto => confronto.golsMandante !== null
+    ).length;
+
+    const pendentes = confrontos.length - finalizados;
+
+    totalFinalizados.textContent = finalizados;
+    totalPendentes.textContent = pendentes;
+}
+
+
+document.getElementById("btnDashboard").addEventListener("click", () => {
     mostrarSecao(secaoDashboard);
 });
-document.getElementById("btnTimes").addEventListener("click", ()=>{
+document.getElementById("btnTimes").addEventListener("click", () => {
     mostrarSecao(secaoTimes);
 });
-document.getElementById("btnConfrontos").addEventListener("click", ()=>{
+document.getElementById("btnConfrontos").addEventListener("click", () => {
     mostrarSecao(secaoConfrontos);
 });
 
-document.getElementById("btnClassificacao").addEventListener("click", ()=>{
+document.getElementById("btnClassificacao").addEventListener("click", () => {
     mostrarSecao(secaoClassificacao);
 });
 
