@@ -29,11 +29,11 @@ function renderizarTimes() {
             <td>${time.nome}</td>
             <td>
                 <button onclick="editarTime(${time.id})">
-                    Editar
+                    <i data-lucide="pencil"></i>
                 </button>
 
                 <button onclick="removerTime(${time.id})">
-                    Excluir
+                   <i data-lucide="trash-2"></i>
                 </button>
             </td>
         `;

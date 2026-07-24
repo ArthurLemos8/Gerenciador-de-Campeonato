@@ -18,7 +18,7 @@ function renderizarConfrontos() {
         const divRodada = document.createElement("div");
 
         divRodada.innerHTML = `
-        <h3>🏆 Rodada ${numeroRodada}</h3>
+        <h3><i data-lucide="calendar"></i> Rodada ${numeroRodada}</h3>
 
         <table class="tabela-rodada">
             <thead>

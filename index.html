@@ -2,14 +2,22 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <title>Gerenciador-Campeonato</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLAYSCORE</title>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
   </head>
 
   <body>
-    <header>CHAMPIONSCUP</header>
+    <header>
+      <h1 class="brand-logo"><i data-lucide="trophy" class="logo-icon"></i>PLAY<span class="glow-text">SCORE</span></h1>
+    </header>
 
     <div class="banner">
       <h2>SISTEMA DE GERENCIAMENTO DE CAMPEONATOS</h2>
@@ -23,50 +31,50 @@
       <aside class="Menu">
         <h2>Menu</h2>
 
-        <button id="btnPaginaInicial">Página Inicial</button>
-        <button id="btnInicio">Dashboard</button>
-        <button id="btnTimes">Times</button>
-        <button id="btnConfrontos">Confrontos</button>
-        <button id="btnClassificacao">CLassificação</button>
+        <button id="btnPaginaInicial" class="active">
+          <i data-lucide="home"></i> Página Inicial</button>
+        <button id="btnInicio"><i data-lucide="layout-dashboard"></i>Dashboard</button>
+        <button id="btnTimes"><i data-lucide="shield"></i>Times</button>
+        <button id="btnConfrontos"><i data-lucide="swords"></i>Confrontos</button>
+        <button id="btnClassificacao"><i data-lucide="trophy"></i>CLassificação</button>
       </aside>
 
       <section class="conteudo" id="secaoInicio">
         <div class="dashboard" id="secaoDashboard">
-                <div class="card">
-                    <h3>Times</h3>
+          <div class="card">
+            <h3><i data-lucide="users"></i> Times</h3>
 
-                    <p id="total-times">0</p>
-                </div>
+            <p id="total-times">0</p>
+          </div>
 
-                <div class="card">
-                    <h3>Jogos</h3>
-                    <p id="total-jogos">0</p>
-                </div>
+          <div class="card">
+            <h3><i data-lucide="gamepad-2"></i> Jogos</h3>
+            <p id="total-jogos">0</p>
+          </div>
 
-                <div class="card">
-                    <h3>Rodadas</h3>
-                    <p id="total-rodadas">0</p>
+          <div class="card">
+            <h3><i data-lucide="calendar-range"></i> Rodadas</h3>
+            <p id="total-rodadas">0</p>
+          </div>
+          <div class="card">
+            <h3><i data-lucide="check-circle-2"></i> Finalizados</h3>
+            <p id="total-finalizados">0</p>
+          </div>
 
-                </div>
-                <div class="card">
-                    <h3>Finalizados</h3>
-                    <p id="total-finalizados">0</p>
-                </div>
+          <div class="card">
+            <h3><i data-lucide="clock"></i> Pendentes</h3>
+            <p id="total-pendentes">0</p>
+          </div>
+          <div class="card">
+            <h3><i data-lucide="zap"></i> Melhor Ataque</h3>
+            <p id="melhor-ataque">-</p>
+          </div>
 
-                <div class="card">
-                    <h3>Pendentes</h3>
-                    <p id="total-pendentes">0</p>
-                </div>
-                <div class="card">
-                    <h3>⚽ Melhor Ataque</h3>
-                    <p id="melhor-ataque">-</p>
-                </div>
-
-                <div class="card">
-                    <h3>🛡️ Melhor Defesa</h3>
-                    <p id="melhor-defesa">-</p>
-                </div>
-            </div> 
+          <div class="card">
+            <h3><i data-lucide="shield-check"></i> Melhor Defesa</h3>
+            <p id="melhor-defesa">-</p>
+          </div>
+        </div>
         <div class="welcome-card" id="secaoWelcomeCard">
           <h1>⚽ Bem-vindo ao ChampionsCup</h1>
 
@@ -132,9 +140,9 @@
         </div>
 
         <div class="confrontos" id="secaoConfrontos">
-          <button id="btnSortear">Gerar Campeonato</button>
+          <button id="btnSortear"><i data-lucide="shuffle"></i></button>
 
-          <button id="btnReset">Reiniciar campeonato</button>
+          <button id="btnReset"><i data-lucide="rotate-ccw"></i></button>
 
           <h2>Tabela deJogos:</h2>
 
@@ -147,13 +155,13 @@
             <thead>
               <tr>
                 <th>Pos</th>
-                <th>Time</th>
+                <th><i data-lucide="shield"></i>Time</th>
                 <th>Jogos</th>
-                <th>P</th>
-                <th>V</th>
-                <th>E</th>
-                <th>D</th>
-                <th>GP</th>
+                <th><i data-lucide="star"></i>P</th>
+                <th><i data-lucide="check-circle-2"></i>V</th>
+                <th><i data-lucide="minus-circle"></i>E</th>
+                <th><i data-lucide="x-circle"></i>D</th>
+                <th><i data-lucide="target"></i>GP</th>
                 <th>GC</th>
                 <th>SG</th>
               </tr>
@@ -174,5 +182,6 @@
     <script src="js/menu.js"></script>
     <script src="js/notificacoes.js"></script>
     <script src="js/script.js"></script>
+    <script> lucide.createIcons();</script>
   </body>
 </html>
