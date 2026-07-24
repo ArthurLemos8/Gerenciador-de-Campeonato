@@ -5,6 +5,7 @@
     <title>Gerenciador-Campeonato</title>
 
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
   </head>
 
   <body>
@@ -22,14 +23,15 @@
       <aside class="Menu">
         <h2>Menu</h2>
 
-        <button id="btnInicio">Página Inicial</button>
+        <button id="btnPaginaInicial">Página Inicial</button>
+        <button id="btnInicio">Dashboard</button>
         <button id="btnTimes">Times</button>
         <button id="btnConfrontos">Confrontos</button>
         <button id="btnClassificacao">CLassificação</button>
       </aside>
 
       <section class="conteudo" id="secaoInicio">
-        <!-- <div class="dashboard" id="secaoDashboard">
+        <div class="dashboard" id="secaoDashboard">
                 <div class="card">
                     <h3>Times</h3>
 
@@ -64,8 +66,8 @@
                     <h3>🛡️ Melhor Defesa</h3>
                     <p id="melhor-defesa">-</p>
                 </div>
-            </div> -->
-        <div class="welcome-card">
+            </div> 
+        <div class="welcome-card" id="secaoWelcomeCard">
           <h1>⚽ Bem-vindo ao ChampionsCup</h1>
 
           <p>Organize campeonatos de forma simples, rápida e automatizada.</p>
@@ -162,12 +164,15 @@
       </section>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
     <script src="js/times.js"></script>
     <script src="js/confrontos.js"></script>
     <script src="js/classificacao.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/dashboard.js"></script>
     <script src="js/menu.js"></script>
+    <script src="js/notificacoes.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>

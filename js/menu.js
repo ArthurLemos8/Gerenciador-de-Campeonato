@@ -1,4 +1,5 @@
 function mostrarSecao(secao) {
+    secaoWelcomeCard.style.display = "none";
     secaoDashboard.style.display = "none";
     secaoClassificacao.style.display = "none";
     secaoConfrontos.style.display = "none";
@@ -6,6 +7,10 @@ function mostrarSecao(secao) {
 
     secao.style.display = "block";
 }
+
+document.getElementById("btnPaginaInicial").addEventListener("click", () => {
+    mostrarSecao(secaoWelcomeCard);
+});
 
 document.getElementById("btnInicio").addEventListener("click", () => {
     mostrarSecao(secaoDashboard);

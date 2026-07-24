@@ -133,6 +133,7 @@ function gerarCampeonato() {
     atualizarDashboard();
     renderizarConfrontos();
     renderizarClassificacao();
+    mostrarToast("Campeonato gerado com sucesso!", "success");
 }
 
 
@@ -185,6 +186,7 @@ function lancarResultado(index) {
     atualizarDashboard();
     renderizarConfrontos();
     renderizarClassificacao();
+    mostrarToast("Resultado registrado!", "success");
 }
 
 function reiniciarCampeonato() {
@@ -209,4 +211,5 @@ function reiniciarCampeonato() {
     renderizarTimes();
     renderizarConfrontos();
     renderizarClassificacao();
+    mostrarToast("Campeonato reiniciado!", "warning");
 }

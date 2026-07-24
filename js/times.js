@@ -1,15 +1,17 @@
 function cadastrarTimes() {
     const nome = inputNome.value.trim();
 
-    if (nome === "") {
-        alert("Digite o nome do time");
-        return;
-    }
+   if (nome === "") {
+    mostrarToast("Digite o nome do time.", "error");
+    return;
+}
 
     times.push({
         id: Date.now(),
         nome: nome
     });
+
+    mostrarToast("Time cadastrado com sucesso!", "success");
 
     inputNome.value = "";
 
@@ -46,6 +48,7 @@ function removerTime(id) {
 
     salvarDados();
     renderizarTimes();
+    mostrarToast("Time removido!", "warning");
 }
 
 function editarTime(id) {
@@ -63,4 +66,5 @@ function editarTime(id) {
 
     salvarDados();
     renderizarTimes();
+    mostrarToast("Time atualizado!", "info");
 }

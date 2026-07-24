@@ -19,6 +19,7 @@ const totalPendentes = document.getElementById("total-pendentes");
 const cardMelhorAtaque = document.getElementById("melhor-ataque");
 const cardMelhorDefesa = document.getElementById("melhor-defesa");
 const secaoDashboard = document.getElementById("secaoDashboard");
+const totalJogos = document.getElementById("total-jogos");
 
 btnCadastrar.addEventListener("click", cadastrarTimes);
 btnSortear.addEventListener("click", gerarCampeonato);
