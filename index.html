@@ -1,34 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Gerenciador-Campeonato</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
     <header>CHAMPIONSCUP</header>
 
     <div class="banner">
-        <h2>SISTEMA DE GERENCIAMENTO DE CAMPEONATOS</h2>
-        <p>Cadastre times, sorteie confrontos e acompanhe a classificação em tempo real.</p>
+      <h2>SISTEMA DE GERENCIAMENTO DE CAMPEONATOS</h2>
+      <p>
+        Cadastre times, sorteie confrontos e acompanhe a classificação em tempo
+        real.
+      </p>
     </div>
 
     <main class="container">
-        <aside class="Menu">
-            <h2>Menu</h2>
+      <aside class="Menu">
+        <h2>Menu</h2>
 
-            <button id="btnDashboard">Dashboard</button>
-            <button id="btnTimes">Times</button>
-            <button id="btnConfrontos">Confrontos</button>
-            <button id="btnClassificacao">CLassificação</button>
-        </aside>
+        <button id="btnInicio">Página Inicial</button>
+        <button id="btnTimes">Times</button>
+        <button id="btnConfrontos">Confrontos</button>
+        <button id="btnClassificacao">CLassificação</button>
+      </aside>
 
-        <section class="conteudo">
-            <div class="dashboard" id="secaoDashboard">
+      <section class="conteudo" id="secaoInicio">
+        <!-- <div class="dashboard" id="secaoDashboard">
                 <div class="card">
                     <h3>Times</h3>
 
@@ -63,86 +64,110 @@
                     <h3>🛡️ Melhor Defesa</h3>
                     <p id="melhor-defesa">-</p>
                 </div>
+            </div> -->
+        <div class="welcome-card">
+          <h1>⚽ Bem-vindo ao ChampionsCup</h1>
+
+          <p>Organize campeonatos de forma simples, rápida e automatizada.</p>
+
+          <div class="welcome-list">
+            <p>📋 Cadastre os times</p>
+            <p>⚔️ Gere os confrontos</p>
+            <p>🏆 Lance os resultados</p>
+            <p>📊 Acompanhe a classificação</p>
+          </div>
+
+          <h2 class="titulo-secao">🚀 Como começar?</h2>
+
+          <div class="passos">
+            <div class="passo">
+              <h3>1️⃣</h3>
+              <p>Cadastre os times participantes.</p>
             </div>
 
-            <div class="cadastro-time" id="secaoTimes">
-                <h2>Cadastrar times</h2>
-
-                <div class="form-group">
-
-                    <label for="nomeTime">
-                        Nome do Time
-                    </label>
-
-                    <input type="text" id="nomeTime" placeholder="Digite o nome do time">
-
-                    <button id="btnCadastrar">
-                        Cadastrar Time
-                    </button>
-
-                </div>
-
-                <table id="tabelaTimes">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nome do Time</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="listaTimes">
-
-                    </tbody>
-                </table>
+            <div class="passo">
+              <h3>2️⃣</h3>
+              <p>Gere automaticamente os confrontos.</p>
             </div>
 
-            <div class="confrontos" id="secaoConfrontos">
-
-                <button id="btnSortear">
-                    Gerar Campeonato
-                </button>
-
-                <button id="btnReset">
-                    Reiniciar campeonato
-                </button>
-
-                <h2>Tabela deJogos:</h2>
-
-
-                <div id="listaRodadas"></div>
-
+            <div class="passo">
+              <h3>3️⃣</h3>
+              <p>Informe os resultados das partidas.</p>
             </div>
 
-            <div class="classificacao" id="secaoClassificacao">
-                <h2>Tabela de classificação</h2>
-                <table id="tabelaclassificacao">
-                    <thead>
-
-                        <tr>
-                            <th>Pos</th>
-                            <th>Time</th>
-                            <th>Jogos</th>
-                            <th>P</th>
-                            <th>V</th>
-                            <th>E</th>
-                            <th>D</th>
-                            <th>GP</th>
-                            <th>GC</th>
-                            <th>SG</th>
-
-                        </tr>
-                    </thead>
-                    <tbody id="listaClassificacao">
-
-                    </tbody>
-                </table>
+            <div class="passo">
+              <h3>4️⃣</h3>
+              <p>Acompanhe a classificação.</p>
             </div>
+          </div>
+        </div>
+        <div class="cadastro-time" id="secaoTimes">
+          <h2>Cadastrar times</h2>
 
-        </section>
+          <div class="form-group">
+            <label for="nomeTime"> Nome do Time </label>
+
+            <input
+              type="text"
+              id="nomeTime"
+              placeholder="Digite o nome do time"
+            />
+
+            <button id="btnCadastrar">Cadastrar Time</button>
+          </div>
+
+          <table id="tabelaTimes">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nome do Time</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+
+            <tbody id="listaTimes"></tbody>
+          </table>
+        </div>
+
+        <div class="confrontos" id="secaoConfrontos">
+          <button id="btnSortear">Gerar Campeonato</button>
+
+          <button id="btnReset">Reiniciar campeonato</button>
+
+          <h2>Tabela deJogos:</h2>
+
+          <div id="listaRodadas"></div>
+        </div>
+
+        <div class="classificacao" id="secaoClassificacao">
+          <h2>Tabela de classificação</h2>
+          <table id="tabelaclassificacao">
+            <thead>
+              <tr>
+                <th>Pos</th>
+                <th>Time</th>
+                <th>Jogos</th>
+                <th>P</th>
+                <th>V</th>
+                <th>E</th>
+                <th>D</th>
+                <th>GP</th>
+                <th>GC</th>
+                <th>SG</th>
+              </tr>
+            </thead>
+            <tbody id="listaClassificacao"></tbody>
+          </table>
+        </div>
+      </section>
     </main>
 
+    <script src="js/times.js"></script>
+    <script src="js/confrontos.js"></script>
+    <script src="js/classificacao.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/menu.js"></script>
     <script src="js/script.js"></script>
-</body>
-
+  </body>
 </html>

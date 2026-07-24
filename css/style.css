@@ -15,6 +15,50 @@ header{
     text-align: center;
      box-shadow: 0 2px 10px rgba(0,0,0,.2);
 }
+.welcome-card{
+    background: linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b
+    );
+    color: white;
+    padding: 40px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.2);
+}
+
+.welcome-card h1{
+    margin-bottom: 15px;
+}
+
+.welcome-card p{
+    line-height: 1.6;
+}
+.passos{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.passo{
+    flex: 1;
+    min-width: 200px;
+    background: white;
+    color: #0f172a;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow:
+    0 2px 10px rgba(0,0,0,.08);
+    transition: .3s;
+}
+
+.passo:hover{
+    transform: translateY(-5px);
+
+}
 
 .banner{
     background: #1e293b ;
