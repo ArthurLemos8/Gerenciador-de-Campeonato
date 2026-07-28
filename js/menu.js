@@ -1,3 +1,4 @@
+
 function mostrarSecao(secao) {
     secaoWelcomeCard.style.display = "none";
     secaoDashboard.style.display = "none";
@@ -8,20 +9,34 @@ function mostrarSecao(secao) {
     secao.style.display = "block";
 }
 
-document.getElementById("btnPaginaInicial").addEventListener("click", () => {
+function atualizarMenuAtivo(botaoClicado) {
+    document.querySelectorAll(".Menu button").forEach((botao) => {
+        botao.classList.remove("active");
+    });
+    botaoClicado.classList.add("active");
+}
+
+btnPaginaInicial.addEventListener("click", () => {
     mostrarSecao(secaoWelcomeCard);
+    atualizarMenuAtivo(btnPaginaInicial);
 });
 
-document.getElementById("btnInicio").addEventListener("click", () => {
+btnInicio.addEventListener("click", () => {
     mostrarSecao(secaoDashboard);
-});
-document.getElementById("btnTimes").addEventListener("click", () => {
-    mostrarSecao(secaoTimes);
-});
-document.getElementById("btnConfrontos").addEventListener("click", () => {
-    mostrarSecao(secaoConfrontos);
+    atualizarMenuAtivo(btnInicio);
 });
 
-document.getElementById("btnClassificacao").addEventListener("click", () => {
+btnTimes.addEventListener("click", () => {
+    mostrarSecao(secaoTimes);
+    atualizarMenuAtivo(btnTimes);
+});         
+
+btnConfrontos.addEventListener("click", () => {
+    mostrarSecao(secaoConfrontos);
+    atualizarMenuAtivo(btnConfrontos);
+});
+
+btnClassificacao.addEventListener("click", () => {
     mostrarSecao(secaoClassificacao);
+    atualizarMenuAtivo(btnClassificacao);
 });
