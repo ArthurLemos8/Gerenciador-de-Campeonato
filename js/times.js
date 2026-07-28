@@ -41,6 +41,9 @@ function renderizarTimes() {
         listaTimes.appendChild(tr);
     });
     totalTimes.textContent = times.length;
+    if (window.lucide) {
+    lucide.createIcons();
+  }
 }
 
 function removerTime(id) {
