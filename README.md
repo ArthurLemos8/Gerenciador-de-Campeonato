@@ -4,7 +4,7 @@
   <p><strong>Sistema de Gerenciamento e Organização de Campeonatos de Futebol</strong></p>
   
   # Veja e acompanhe:
-- site: https://arthurlemos8.github.io/Gerenciador-de-Campeonato/
+- site: https://arthurlemos8.github.io/PlayScore/
   
   <p>
     <a href="#-funcionalidades">Funcionalidades</a> •

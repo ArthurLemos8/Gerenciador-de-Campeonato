@@ -83,6 +83,7 @@ function renderizarConfrontos() {
                 </td>
             `;
       tbodyRodada.appendChild(tr);
+      lucide.createIcons();
     });
   });
   document.getElementById("total-jogos").textContent = confrontos.length;
