@@ -1,4 +1,5 @@
 const inputNome = document.getElementById("nomeTime");
+const inputEscudo = document.getElementById('escudoTimeFile')
 const btnCadastrar = document.getElementById("btnCadastrar");
 const listaTimes = document.getElementById("listaTimes");
 const totalTimes = document.getElementById("total-times");

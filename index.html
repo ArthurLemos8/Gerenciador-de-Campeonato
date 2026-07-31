@@ -2,7 +2,7 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PLAYSCORE</title>
 
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -16,7 +16,12 @@
 
   <body>
     <header>
-      <h1 class="brand-logo"><i data-lucide="trophy" class="logo-icon"></i>PLAY<span class="glow-text">SCORE</span></h1>
+      <h1 class="brand-logo">
+        <i data-lucide="trophy" class="logo-icon"></i>PLAY<span
+          class="glow-text"
+          >SCORE</span
+        >
+      </h1>
     </header>
 
     <div class="banner">
@@ -32,47 +37,76 @@
         <h2>Menu</h2>
 
         <button id="btnPaginaInicial" class="active">
-          <i data-lucide="home"></i> Página Inicial</button>
-        <button id="btnInicio"><i data-lucide="layout-dashboard"></i>Dashboard</button>
+          <i data-lucide="home"></i> Página Inicial
+        </button>
+        <button id="btnInicio">
+          <i data-lucide="layout-dashboard"></i>Dashboard
+        </button>
         <button id="btnTimes"><i data-lucide="shield"></i>Times</button>
-        <button id="btnConfrontos"><i data-lucide="swords"></i>Confrontos</button>
-        <button id="btnClassificacao"><i data-lucide="trophy"></i>CLassificação</button>
+        <button id="btnConfrontos">
+          <i data-lucide="swords"></i>Confrontos
+        </button>
+        <button id="btnClassificacao">
+          <i data-lucide="trophy"></i>CLassificação
+        </button>
       </aside>
 
       <section class="conteudo" id="secaoInicio">
         <div class="welcome-card" id="secaoWelcomeCard">
-          <h1>⚽ Bem-vindo ao PLAYSCORE</h1>
-  
-          <p>Organize campeonatos de forma simples, rápida e automatizada.</p>
-  
-          <div class="welcome-list">
-            <p>📋 Cadastre os times</p>
-            <p>⚔️ Gere os confrontos</p>
-            <p>🏆 Lance os resultados</p>
-            <p>📊 Acompanhe a classificação</p>
+          <div class="welcome-header">
+            <h1>
+              <i data-lucide="sparkles" class="icon-hero"></i>
+              Bem-vindo ao PLAYSCORE
+            </h1>
+            <p>Organize campeonatos de forma simples, rápida e automatizada.</p>
           </div>
-  
-          <h2 class="titulo-secao">🚀 Como começar?</h2>
-  
+
+          <div class="welcome-features">
+            <div class="feature-item">
+              <i data-lucide="shield"></i>
+              <span>Cadastre os times participantes</span>
+            </div>
+            <div class="feature-item">
+              <i data-lucide="swords"></i>
+              <span>Gere os confrontos automaticamente</span>
+            </div>
+            <div class="feature-item">
+              <i data-lucide="trophy"></i>
+              <span>Lance os resultados em tempo real</span>
+            </div>
+            <div class="feature-item">
+              <i data-lucide="bar-chart-3"></i>
+              <span>Acompanhe a tabela e estatísticas</span>
+            </div>
+          </div>
+
+          <h2 class="titulo-secao">
+            <i data-lucide="rocket"></i> Como começar?
+          </h2>
+
           <div class="passos">
             <div class="passo">
-              <h3>1️⃣</h3>
-              <p>Cadastre os times participantes.</p>
+              <span class="passo-numero">1</span>
+              <h3>Cadastrar Times</h3>
+              <p>Adicione os clubes com seus escudos e nomes.</p>
             </div>
-  
+
             <div class="passo">
-              <h3>2️⃣</h3>
-              <p>Gere automaticamente os confrontos.</p>
+              <span class="passo-numero">2</span>
+              <h3>Gerar Jogos</h3>
+              <p>Sorteie as rodadas automaticamente.</p>
             </div>
-  
+
             <div class="passo">
-              <h3>3️⃣</h3>
-              <p>Informe os resultados das partidas.</p>
+              <span class="passo-numero">3</span>
+              <h3>Placar das Partidas</h3>
+              <p>Informe os gols de cada confronto.</p>
             </div>
-  
+
             <div class="passo">
-              <h3>4️⃣</h3>
-              <p>Acompanhe a classificação.</p>
+              <span class="passo-numero">4</span>
+              <h3>Classificação</h3>
+              <p>Veja os pontos e estatísticas em tempo real.</p>
             </div>
           </div>
         </div>
@@ -116,29 +150,38 @@
 
           <div class="form-group">
             <label for="nomeTime"> Nome do Time </label>
-
             <input
               type="text"
               id="nomeTime"
               placeholder="Digite o nome do time"
             />
+            <label for="escudoTimeFile">Escudo do Time (Upload)</label>
+      <div class="file-input-wrapper">
+        <input 
+          type="file" 
+          id="escudoTimeFile" 
+          accept="image/png, image/jpeg, image/webp" 
+        />
 
-            <button id="btnCadastrar">Cadastrar Time</button>
+         <button type="submit" id="btnCadastrar">
+        <i data-lucide="plus"></i> Cadastrar Time
+      </button>
           </div>
 
           <table id="tabelaTimes">
             <thead>
               <tr>
-                <th>#</th>
-                <th>Nome do Time</th>
-                <th>Ações</th>
+               <th class="col-num">#</th>
+        <th class="col-escudo">Escudo</th>
+        <th class="col-nome">Nome do Time</th>
+        <th class="col-acoes">Ações</th>
               </tr>
             </thead>
 
             <tbody id="listaTimes"></tbody>
           </table>
         </div>
-
+        </div>
         <div class="confrontos" id="secaoConfrontos">
           <button id="btnSortear"><i data-lucide="shuffle"></i></button>
 
@@ -174,6 +217,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
+    <script src="js/dom.js"></script>
     <script src="js/times.js"></script>
     <script src="js/confrontos.js"></script>
     <script src="js/classificacao.js"></script>
@@ -182,7 +226,8 @@
     <script src="js/menu.js"></script>
     <script src="js/notificacoes.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/dom.js"></script>
-    <script> lucide.createIcons();</script>
+    <script>
+      lucide.createIcons();
+    </script>
   </body>
 </html>

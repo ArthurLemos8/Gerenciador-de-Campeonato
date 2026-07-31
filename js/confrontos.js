@@ -1,23 +1,19 @@
-
-
 function renderizarConfrontos() {
-    listaRodadas.innerHTML = "";
-    const rodadasAgrupadas = {};
+  listaRodadas.innerHTML = "";
+  const rodadasAgrupadas = {};
 
-    confrontos.forEach(confronto => {
+  confrontos.forEach((confronto) => {
+    if (!rodadasAgrupadas[confronto.rodada]) {
+      rodadasAgrupadas[confronto.rodada] = [];
+    }
 
-        if (!rodadasAgrupadas[confronto.rodada]) {
-            rodadasAgrupadas[confronto.rodada] = [];
-        }
+    rodadasAgrupadas[confronto.rodada].push(confronto);
+  });
 
-        rodadasAgrupadas[confronto.rodada].push(confronto);
-    });
+  Object.keys(rodadasAgrupadas).forEach((numeroRodada) => {
+    const divRodada = document.createElement("div");
 
-    Object.keys(rodadasAgrupadas).forEach(numeroRodada => {
-
-        const divRodada = document.createElement("div");
-
-        divRodada.innerHTML = `
+    divRodada.innerHTML = `
         <h3><i data-lucide="calendar"></i> Rodada ${numeroRodada}</h3>
 
         <table class="tabela-rodada">
@@ -29,6 +25,7 @@ function renderizarConfrontos() {
                     <th>Resultado</th>
                     <th>Status</th>
                     <th>Ações</th>
+                    
                 </tr>
             </thead>
 
@@ -37,179 +34,186 @@ function renderizarConfrontos() {
         </table>
     `;
 
-        listaRodadas.appendChild(divRodada);
+    listaRodadas.appendChild(divRodada);
 
-        const tbodyRodada = document.getElementById(
-            `rodada-${numeroRodada}`
-        );
-        rodadasAgrupadas[numeroRodada].forEach((confronto) => {
+    const tbodyRodada = document.getElementById(`rodada-${numeroRodada}`);
+    rodadasAgrupadas[numeroRodada].forEach((confronto) => {
+      const index = confrontos.indexOf(confronto);
+      const tr = document.createElement("tr");
 
-            const index = confrontos.indexOf(confronto);
+      // Define o HTML do escudo do Mandante
+      const escudoMandanteHTML = confronto.escudoMandante
+        ? `<img src="${confronto.escudoMandante}" class="escudo-time-img" alt="${confronto.mandante}">`
+        : `<div class="escudo-placeholder"><i data-lucide="shield"></i></div>`;
 
-            const tr = document.createElement("tr");
+      // Define o HTML do escudo do Visitante
+      const escudoVisitanteHTML = confronto.escudoVisitante
+        ? `<img src="${confronto.escudoVisitante}" class="escudo-time-img" alt="${confronto.visitante}">`
+        : `<div class="escudo-placeholder"><i data-lucide="shield"></i></div>`;
 
-            tr.innerHTML = `
-        <td>${index + 1}</td>
-        <td>${confronto.mandante}</td>
-        <td>${confronto.visitante}</td>
-
-        <td>
-            ${confronto.golsMandante === null
-                    ? "- x -"
-                    : `${confronto.golsMandante} x ${confronto.golsVisitante}`
-                }
-        </td>
-
-        <td>
-            ${confronto.golsMandante === null
-                    ? "⏳ Pendente"
-                    : "✅ Finalizado"
-                }
-        </td>
-
-        <td>
-            <button onclick="lancarResultado(${index})">
-                Resultado
-            </button>
-        </td>
-    `;
-            tbodyRodada.appendChild(tr);
-
-        });
-
+      tr.innerHTML = `
+                <td class="col-num">${index + 1}</td>
+                <td class="time-info">
+                    ${escudoMandanteHTML}
+                    <span>${confronto.mandante}</span>
+                </td>
+                <td class="time-info">
+                    ${escudoVisitanteHTML}
+                    <span>${confronto.visitante}</span>
+                </td>
+                <td>
+                    ${
+                      confronto.golsMandante === null
+                        ? "- x -"
+                        : `<strong>${confronto.golsMandante} x ${confronto.golsVisitante}</strong>`
+                    }
+                </td>
+                <td>
+                    ${
+                      confronto.golsMandante === null
+                        ? "⏳ Pendente"
+                        : "✅ Finalizado"
+                    }
+                </td>
+                <td>
+                     <button class="btn-resultado" onclick="lancarResultado(${index})">
+                        <i data-lucide="clipboard-pen"></i>
+                         
+                    </button>
+                </td>
+            `;
+      tbodyRodada.appendChild(tr);
     });
-    document.getElementById("total-jogos").textContent = confrontos.length;
+  });
+  document.getElementById("total-jogos").textContent = confrontos.length;
 }
 
 function gerarCampeonato() {
-    confrontos = [];
-    let timesRodadas = [...times];
-    if (timesRodadas.length % 2 !== 0) {
-        timesRodadas.push({
-            nome: "FOLGA"
-        });
-    };
+  confrontos = [];
+  let timesRodadas = [...times];
+  if (timesRodadas.length % 2 !== 0) {
+    timesRodadas.push({
+      nome: "FOLGA",
+    });
+  }
 
-
-    for (let rodada = 1; rodada < timesRodadas.length; rodada++) {
-        for (let i = 0; i < timesRodadas.length / 2; i++) {
-            const mandante = timesRodadas[i];
-            const visitante = timesRodadas[timesRodadas.length - 1 - i];
-            if (mandante.nome !== "FOLGA" && visitante.nome !== "FOLGA") {
-                if (rodada % 2 === 0) {
-                    confrontos.push({
-                        rodada: rodada,
-                        mandante: visitante.nome,
-                        visitante: mandante.nome,
-                        golsMandante: null,
-                        golsVisitante: null
-                    });
-                } else {
-
-                    confrontos.push({
-                        rodada: rodada,
-                        mandante: mandante.nome,
-                        visitante: visitante.nome,
-                        golsMandante: null,
-                        golsVisitante: null
-                    });
-                }
-            }
+  for (let rodada = 1; rodada < timesRodadas.length; rodada++) {
+    for (let i = 0; i < timesRodadas.length / 2; i++) {
+      const mandante = timesRodadas[i];
+      const visitante = timesRodadas[timesRodadas.length - 1 - i];
+      if (mandante.nome !== "FOLGA" && visitante.nome !== "FOLGA") {
+        if (rodada % 2 === 0) {
+          confrontos.push({
+            rodada: rodada,
+            mandante: visitante.nome,
+            escudoMandante: visitante.escudo || "",
+            visitante: mandante.nome,
+            escudoVisitante: mandante.escudo || "",
+            golsMandante: null,
+            golsVisitante: null,
+          });
+        } else {
+          confrontos.push({
+            rodada: rodada,
+            mandante: mandante.nome,
+            escudoMandante: mandante.escudo || "",
+            visitante: visitante.nome,
+            escudoVisitante: visitante.escudo || "",
+            golsMandante: null,
+            golsVisitante: null,
+          });
         }
-        const ultimo = timesRodadas.pop();
-        timesRodadas.splice(1, 0, ultimo);
+      }
     }
-    let rodadas;
+    const ultimo = timesRodadas.pop();
+    timesRodadas.splice(1, 0, ultimo);
+  }
+  let rodadas;
 
-    if (times.length % 2 === 0) {
-        rodadas = times.length - 1
-    }
-    else {
-        rodadas = times.length;
-    }
-    totalRodadas.textContent = rodadas;
+  if (times.length % 2 === 0) {
+    rodadas = times.length - 1;
+  } else {
+    rodadas = times.length;
+  }
+  totalRodadas.textContent = rodadas;
 
-    salvarDados();
-    atualizarDashboard();
-    renderizarConfrontos();
-    renderizarClassificacao();
-    mostrarToast("Campeonato gerado com sucesso!", "success");
+  salvarDados();
+  atualizarDashboard();
+  renderizarConfrontos();
+  renderizarClassificacao();
+  mostrarToast("Campeonato gerado com sucesso!", "success");
 }
 
-
 function lancarResultado(index) {
+  if (
+    confrontos[index].golsMandante !== null &&
+    confrontos[index].golsVisitante !== null
+  ) {
+    const confirmar = confirm("Esse jogo já possui resultado. Deseja alterar?");
 
-    if (
-        confrontos[index].golsMandante !== null &&
-        confrontos[index].golsVisitante !== null
-    ) {
-        const confirmar = confirm(
-            "Esse jogo já possui resultado. Deseja alterar?"
-        );
-
-        if (!confirmar) {
-            return;
-        }
+    if (!confirmar) {
+      return;
     }
+  }
 
-    const golsMandante = prompt("Gols do mandante:");
+  const golsMandante = prompt("Gols do mandante:");
 
-    if (golsMandante === null) {
-        return;
-    }
+  if (golsMandante === null) {
+    return;
+  }
 
-    const golsVisitante = prompt("Gols do visitante:");
+  const golsVisitante = prompt("Gols do visitante:");
 
-    if (golsVisitante === null) {
-        return;
-    }
+  if (golsVisitante === null) {
+    return;
+  }
 
-    if (isNaN(golsMandante) || isNaN(golsVisitante)) {
-        alert("Digite apenas números.");
-        return;
-    }
+  if (isNaN(golsMandante) || isNaN(golsVisitante)) {
+    alert("Digite apenas números.");
+    return;
+  }
 
-    if (golsMandante < 0 || golsVisitante < 0) {
-        alert("Os gols não podem ser negativos.");
-        return;
-    }
+  if (golsMandante < 0 || golsVisitante < 0) {
+    alert("Os gols não podem ser negativos.");
+    return;
+  }
 
-    if (!Number.isInteger(Number(golsMandante)) || !Number.isInteger(Number(golsVisitante))) {
-        alert("Digite apenas números Inteiros.");
-        return;
-    }
+  if (
+    !Number.isInteger(Number(golsMandante)) ||
+    !Number.isInteger(Number(golsVisitante))
+  ) {
+    alert("Digite apenas números Inteiros.");
+    return;
+  }
 
-    confrontos[index].golsMandante = Number(golsMandante);
-    confrontos[index].golsVisitante = Number(golsVisitante);
+  confrontos[index].golsMandante = Number(golsMandante);
+  confrontos[index].golsVisitante = Number(golsVisitante);
 
-    salvarDados();
-    atualizarDashboard();
-    renderizarConfrontos();
-    renderizarClassificacao();
-    mostrarToast("Resultado registrado!", "success");
+  salvarDados();
+  atualizarDashboard();
+  renderizarConfrontos();
+  renderizarClassificacao();
+  mostrarToast("Resultado registrado!", "success");
 }
 
 function reiniciarCampeonato() {
+  const confirmar = confirm("Tem certeza que deseja apagar todos os dados?");
 
-    const confirmar = confirm(
-        "Tem certeza que deseja apagar todos os dados?"
-    );
+  if (!confirmar) {
+    return;
+  }
 
-    if (!confirmar) {
-        return;
-    }
+  times = [];
+  confrontos = [];
 
-    times = [];
-    confrontos = [];
+  localStorage.clear();
 
-    localStorage.clear();
+  totalTimes.textContent = 0;
+  totalRodadas.textContent = 0;
+  document.getElementById("total-jogos").textContent = 0;
 
-    totalTimes.textContent = 0;
-    totalRodadas.textContent = 0;
-    document.getElementById("total-jogos").textContent = 0;
-
-    renderizarTimes();
-    renderizarConfrontos();
-    renderizarClassificacao();
-    mostrarToast("Campeonato reiniciado!", "warning");
+  renderizarTimes();
+  renderizarConfrontos();
+  renderizarClassificacao();
+  mostrarToast("Campeonato reiniciado!", "warning");
 }

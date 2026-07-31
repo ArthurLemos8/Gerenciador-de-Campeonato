@@ -121,24 +121,121 @@ header h1, .banner h1 {
 }
 
 
+/* --- ESTILIZAÇÃO DO WELCOME CARD --- */
 .welcome-card {
-    background-color: #1e293b;
-    border: 1px solid #334155;
-    padding: 32px;
-    border-radius: 16px;
-    margin-bottom: 32px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
 }
 
-.welcome-card h1 {
-    font-size: 1.75rem;
-    color: #ffffff;
-    margin-bottom: 12px;
+.welcome-header h1 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 8px;
 }
 
-.welcome-card p {
-    color: #94a3b8;
-    line-height: 1.6;
+.welcome-header h1 .icon-hero {
+  color: #3b82f6;
+  width: 32px;
+  height: 32px;
+}
+
+/* Lista de Recursos */
+.welcome-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin: 24px 0 32px 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: rgba(15, 23, 42, 0.6);
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+
+.feature-item svg {
+  color: #60a5fa;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Título de Como Começar */
+.titulo-secao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.2rem;
+  color: #f8fafc;
+  margin-bottom: 16px;
+}
+
+.titulo-secao svg {
+  color: #f59e0b;
+  width: 22px;
+  height: 22px;
+}
+
+/* Cards de Passos */
+.passos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.passo {
+  position: relative;
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  padding: 20px;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.passo:hover {
+  transform: translateY(-4px);
+  border-color: #3b82f6;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
+}
+
+.passo-numero {
+  width: 28px;
+  height: 28px;
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.passo h3 {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.passo p {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.4;
 }
 
 .passos {
@@ -241,6 +338,109 @@ button {
 .form-group button:hover, #btnSortear:hover {
     background-color: #1d4ed8;
 }
+
+/* --- ESTILIZAÇÃO DO INPUT DE UPLOAD DE ARQUIVO --- */
+input[type="file"] {
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: #334155;
+  color: #ffffff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background 0.2s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #2563eb;
+}
+
+/* --- REFORMATAÇÃO E ALINHAMENTO DAS TABELAS --- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+/* Alinhamento central de conteúdo nas células */
+th, td {
+  padding: 12px 16px;
+  vertical-align: middle; /* Centraliza o texto e a imagem do escudo na mesma linha */
+  text-align: center;
+  border-bottom: 1px solid #334155;
+}
+
+/* Larguras específicas para manter a tabela organizada */
+.col-num { width: 50px; }
+.col-escudo { width: 70px; }
+.col-nome { text-align: left; } /* Deixa o nome do time alinhado à esquerda para legibilidade */
+td.col-nome-td {
+  text-align: left;
+  font-weight: 600;
+}
+
+.col-acoes { width: 100px; }
+
+/* Estilização da Imagem do Escudo */
+.escudo-time-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Fallback (ícone cinza) se o time não tiver imagem enviada */
+.escudo-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+}
+
+.escudo-placeholder svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-resultado {
+    display: flex;
+    transform: translateX(30px);
+    gap: 6px;
+
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #fff;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 8px 14px;
+
+    cursor: pointer;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+    
+}
+
+
 
 #btnReset {
   display: inline-flex;
