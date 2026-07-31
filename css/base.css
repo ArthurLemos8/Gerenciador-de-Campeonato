@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #0f172a;
+    color: #f8fafc;
+    min-height: 100vh;
+}
+
+.secao-auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.conteudo {
+    flex: 1;
+    padding: 32px;
+    max-width: 1200px;
+}
+
+.glow-text {
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  filter: drop-shadow(0px 0px 12px rgba(59, 130, 246, 0.6));
+  transition: filter 0.3s ease;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+th, td {
+  padding: 12px 16px;
+  vertical-align: middle; 
+  text-align: center;
+  border-bottom: 1px solid #334155;
+}
+
+
+table, #tabelaTimes, #tabelaclassificacao, .tabela-rodada {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    background-color: transparent;
+    overflow: hidden;
+}
+
+th {
+    background-color: #0f172a;
+    color: #94a3b8;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 14px 16px;
+    text-align: center;
+    border-bottom: 1px solid #334155;
+}
+
+td {
+    padding: 14px 16px;
+    color: #e2e8f0;
+    border-bottom: 1px solid #334155;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+tr:hover td {
+    background-color: rgba(51, 65, 85, 0.3);
+}
+
+
+#tabelaTimes button,
+#listaTimes button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 3px;
+}
+
+#tabelaTimes button svg,
+#listaTimes button svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+}
+
+#tabelaTimes button:first-child,
+#listaTimes button:first-child {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+#tabelaTimes button:first-child:hover,
+#listaTimes button:first-child:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+}
+
+
+#tabelaTimes button:last-child,
+#listaTimes button:last-child {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+#tabelaTimes button:last-child:hover,
+#listaTimes button:last-child:hover {
+    background-color: #ef4444;
+    color: #ffffff;
+}

@@ -7,6 +7,8 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css" />
     <link
       rel="stylesheet"
@@ -156,31 +158,31 @@
               placeholder="Digite o nome do time"
             />
             <label for="escudoTimeFile">Escudo do Time (Upload)</label>
-      <div class="file-input-wrapper">
-        <input 
-          type="file" 
-          id="escudoTimeFile" 
-          accept="image/png, image/jpeg, image/webp" 
-        />
+            <div class="file-input-wrapper">
+              <input
+                type="file"
+                id="escudoTimeFile"
+                accept="image/png, image/jpeg, image/webp"
+              />
 
-         <button type="submit" id="btnCadastrar">
-        <i data-lucide="plus"></i> Cadastrar Time
-      </button>
+              <button type="submit" id="btnCadastrar">
+                <i data-lucide="plus"></i> Cadastrar Time
+              </button>
+            </div>
+
+            <table id="tabelaTimes">
+              <thead>
+                <tr>
+                  <th class="col-num">#</th>
+                  <th class="col-escudo">Escudo</th>
+                  <th class="col-nome">Nome do Time</th>
+                  <th class="col-acoes">Ações</th>
+                </tr>
+              </thead>
+
+              <tbody id="listaTimes"></tbody>
+            </table>
           </div>
-
-          <table id="tabelaTimes">
-            <thead>
-              <tr>
-               <th class="col-num">#</th>
-        <th class="col-escudo">Escudo</th>
-        <th class="col-nome">Nome do Time</th>
-        <th class="col-acoes">Ações</th>
-              </tr>
-            </thead>
-
-            <tbody id="listaTimes"></tbody>
-          </table>
-        </div>
         </div>
         <div class="confrontos" id="secaoConfrontos">
           <button id="btnSortear"><i data-lucide="shuffle"></i></button>
@@ -217,14 +219,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-    <script src="js/dom.js"></script>
-    <script src="js/times.js"></script>
-    <script src="js/confrontos.js"></script>
-    <script src="js/classificacao.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="js/dashboard.js"></script>
-    <script src="js/menu.js"></script>
-    <script src="js/notificacoes.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <script src="js/config/firebase-config.js"></script>
+    <script src="js/core/guard.js"></script>
+
+    <script src="js/views/dom.js"></script>
+    <script src="js/services/times.js"></script>
+    <script src="js/services/confrontos.js"></script>
+    <script src="js/views/classificacao.js"></script>
+    <script src="js/config/imgbb.js"></script>
+    <script src="js/views/dashboard.js"></script>
+    <script src="js/core/menu.js"></script>
+    <script src="js/views/notificacoes.js"></script>
     <script src="js/script.js"></script>
     <script>
       lucide.createIcons();

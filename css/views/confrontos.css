@@ -1,0 +1,19 @@
+#listaRodadas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+#listaRodadas > div {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+#listaRodadas h3 {
+    margin-bottom: 12px;
+    color: #3b82f6;
+    font-size: 1.1rem;
+}

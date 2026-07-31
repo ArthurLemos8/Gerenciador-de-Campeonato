@@ -1,0 +1,23 @@
+.brand-logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  text-transform: uppercase;
+}
+
+
+.logo-icon {
+  color: #3b82f6;
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
+}
+
+
+.brand-logo:hover .glow-text {
+  filter: drop-shadow(0px 0px 18px rgba(59, 130, 246, 0.9));
+}

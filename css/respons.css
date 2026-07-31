@@ -1,0 +1,61 @@
+@media (max-width: 768px) {
+
+
+  .container {
+    flex-direction: column;
+  }
+
+  .Menu {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #334155;
+    padding: 16px;
+  }
+
+  .Menu nav, .Menu {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .Menu button {
+    width: auto; 
+    padding: 10px 14px;
+    font-size: 0.85rem;
+  }
+
+  .Menu h2 {
+    display: none; 
+  }
+
+  .conteudo {
+    padding: 16px;
+    width: 100%;
+  }
+
+
+  .passos, .dashboard, .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .cadastro-time, .confrontos, .classificacao, .card-rodada {
+    overflow-x: auto; 
+  }
+
+  table, #tabelaTimes, #tabelaclassificacao {
+    min-width: 500px;
+  }
+
+
+  .placar-area input {
+    width: 38px;
+    height: 34px;
+  }
+
+  .form-group button {
+    width: 100%; 
+  }
+}

@@ -1,0 +1,113 @@
+/* Zerando margens básicas */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+body.body-login {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #0f172a;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.auth-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.auth-card h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.8rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+#formAuth {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.campo label {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.campo input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background-color: #0f172a;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo input:focus {
+  border-color: #6366f1; 
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.btn-primary {
+  margin-top: 0.5rem;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #6366f1;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  background-color: #4f46e5;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+
+.auth-alternar {
+  margin-top: 1.8rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.auth-alternar a {
+  color: #818cf8;
+  text-decoration: none;
+  font-weight: 600;
+  margin-left: 0.3rem;
+  transition: color 0.2s;
+}
+
+.auth-alternar a:hover {
+  color: #a5b4fc;
+  text-decoration: underline;
+}

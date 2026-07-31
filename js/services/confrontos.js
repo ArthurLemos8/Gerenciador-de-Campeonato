@@ -41,12 +41,10 @@ function renderizarConfrontos() {
       const index = confrontos.indexOf(confronto);
       const tr = document.createElement("tr");
 
-      // Define o HTML do escudo do Mandante
       const escudoMandanteHTML = confronto.escudoMandante
         ? `<img src="${confronto.escudoMandante}" class="escudo-time-img" alt="${confronto.mandante}">`
         : `<div class="escudo-placeholder"><i data-lucide="shield"></i></div>`;
 
-      // Define o HTML do escudo do Visitante
       const escudoVisitanteHTML = confronto.escudoVisitante
         ? `<img src="${confronto.escudoVisitante}" class="escudo-time-img" alt="${confronto.visitante}">`
         : `<div class="escudo-placeholder"><i data-lucide="shield"></i></div>`;
