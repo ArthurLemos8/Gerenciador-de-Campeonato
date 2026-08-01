@@ -23,3 +23,4 @@ const btnInicio = document.getElementById("btnInicio");
 const btnTimes = document.getElementById("btnTimes");
 const btnConfrontos = document.getElementById("btnConfrontos");
 const btnClassificacao = document.getElementById("btnClassificacao");
+const btnSair = document.getElementById("btnSair");

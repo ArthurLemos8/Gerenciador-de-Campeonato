@@ -77,3 +77,13 @@ header h1, .banner h1 {
     color: #ffffff !important;
     font-weight: 600;
 }
+
+.Menu .btn-logout {
+    margin-top: auto; 
+    color: #ef4444 !important; 
+}
+
+.Menu .btn-logout:hover {
+    background-color: rgba(239, 68, 68, 0.1) !important; 
+    color: #f87171 !important;
+}
